@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-white" routerLink="/">
+      StyleNest
+    </a>
+
+    <button class="navbar-toggler"  type="button"   data-bs-toggle="collapse"  data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/collection">Collection</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/contact">Contact</a>
+        </li>
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" id="loginDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Login</a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown">
+            <li><a class=" dropdown-item" routerLink="/admin/login">Admin Login</a></li>
+            <li><a class=" dropdown-item" routerLink="/user/login">User Login</a></li>
+          </ul>
+           
+        </li> -->
+        <li class="nav-item dropdown position-relative">
+  <a class="nav-link text-white"
+     role="button"
+     (click)="toggleDropdown()">
+    Login
+  </a>
+
+  <ul class="dropdown-menu dropdown-menu-end show"
+      *ngIf="isOpen">
+    <li>
+      <a class="dropdown-item" routerLink="/admin/login" (click)="isOpen=false">
+        Admin Login
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item" routerLink="/user/login" (click)="isOpen=false">
+        User Login
+      </a>
+    </li>
+  </ul>
+</li>
+      </ul>
+    </div>
+  </div>
+</nav>
+

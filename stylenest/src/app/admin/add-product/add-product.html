@@ -1,0 +1,15 @@
+<div class="container mt-4">
+  <h2>{{ isEdit ? 'Edit Product' : 'Add Product' }}</h2>
+  <form  #productform="ngForm" (ngSubmit)="submit(productform)">
+
+  <input class="form-control mb-2" placeholder="Name" [(ngModel)]="product.name" name="name" required>
+  <input class="form-control mb-2" type="text" placeholder="Price" [(ngModel)]="product.price" name="price" required>
+  <input class="form-control mb-2" type="text" placeholder="Image URL" [(ngModel)]="product.image" name="image" required>
+<!-- 
+  <button class="btn btn-dark w-100" type="submit">Add Product</button>
+  <button class="btn btn-danger" (click)="logout()">Logout</button> -->
+     <button class="btn btn-success">
+    {{ isEdit ? 'Update Product' : 'Add Product' }}
+  </button>
+</form>
+</div>

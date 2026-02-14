@@ -1,0 +1,96 @@
+/* CONTACT SECTION */
+.contact {
+  padding: 80px 20px;
+   margin-bottom: 0;
+  min-height: calc(100vh - 80px); /* ensures full coverage */
+  /* background: linear-gradient(135deg, #fafafa, #f3f3f3); */
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.65),
+      rgba(0, 0, 0, 0.65)
+    ),
+    url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d");
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* TITLE */
+.contact h2 {
+  font-size: 42px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  color: #e0d6d6;
+  letter-spacing: 1px;
+}
+
+/* FORM CONTAINER */
+.contact-form {
+  max-width: 520px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 14px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* INPUTS & TEXTAREA */
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background-color: #fafafa;
+}
+
+/* TEXTAREA */
+.contact-form textarea {
+  height: 120px;
+  resize: none;
+}
+
+/* FOCUS EFFECT */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #000;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+/* BUTTON */
+.btn-secondary {
+  width: 100%;
+  padding: 14px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+/* BUTTON HOVER */
+.btn-secondary:hover {
+  background-color: #222;
+  transform: translateY(-2px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 576px) {
+  .contact h2 {
+    font-size: 32px;
+  }
+
+  .contact-form {
+    padding: 30px 20px;
+  }
+}

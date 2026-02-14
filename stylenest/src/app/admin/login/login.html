@@ -1,0 +1,9 @@
+<div class="container mt-5" style="max-width:400px">
+  <h3 class="text-center mb-3">Admin Login</h3>
+
+  <form (ngSubmit)="login()">
+  <input  class="form-control mb-2" placeholder="Email" type="email" [(ngModel)]="form.email" name="email" required />
+  <input class="form-control mb-3" type="password" [(ngModel)]="form.password" name="password" required />
+  <button class="btn btn-dark w-100" type="submit">Login</button>
+</form>
+</div>

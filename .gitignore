@@ -1,0 +1,10 @@
+# In PowerShell at D:\TY-6\ANGULAR-STYLENEST
+@"
+node_modules/
+.angular/
+dist/
+build/
+.env
+*.log
+.DS_Store
+"@ | Set-Content .gitignore

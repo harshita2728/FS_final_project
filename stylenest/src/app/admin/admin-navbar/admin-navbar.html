@@ -1,0 +1,13 @@
+<nav class="navbar navbar-dark bg-dark px-4">
+  <span class="navbar-brand">Admin Panel</span>
+
+  <div>
+    <a routerLink="/admin/dashboard/manage-products" class="btn btn-outline-light me-2">
+      Manage Products
+    </a>
+    <a routerLink="/admin/dashboard/add-product" class="btn btn-outline-light me-2">
+      Add Product
+    </a>
+    <button class="btn btn-danger" (click)="logout()">Logout</button>
+  </div>
+</nav>

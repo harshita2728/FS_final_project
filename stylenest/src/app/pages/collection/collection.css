@@ -1,0 +1,14 @@
+.card {
+  border: none;
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-20px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.50);
+}
+
+.card-img-top {
+  height: 260px;
+  object-fit: cover;
+}
