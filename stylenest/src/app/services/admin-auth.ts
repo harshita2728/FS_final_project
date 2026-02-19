@@ -16,10 +16,12 @@ export class AdminAuthService {
   }
 
   isLoggedIn(): boolean {
+    if (typeof window === 'undefined') return false; // SSR
     return !!localStorage.getItem('adminToken');
   }
 
   logout() {
+    if (typeof window === 'undefined') return;
     localStorage.removeItem('adminToken');
   }
 }

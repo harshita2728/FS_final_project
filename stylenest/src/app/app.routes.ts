@@ -84,7 +84,13 @@ export const routes: Routes = [
           import('./pages/user-login/user-login')
             .then(m => m.UserLoginComponent)
       },
-
+      {
+        path: 'user/user-register',
+        loadComponent: () => import('./pages/user-register/user-register').then(m => m.UserRegisterComponent)
+      },
+      { path: 'cart', loadComponent: () => import('./pages/cart/cart').then(m => m.CartPageComponent) },
+      { path: 'wishlist', loadComponent: () => import('./pages/wishlist/wishlist').then(m => m.WishlistPageComponent) },
+      { path: 'user/orders', loadComponent: () => import('./pages/orders/orders').then(m => m.UserOrdersPageComponent) },
       // admin login (PUBLIC navbar)
       {
         path: 'admin/login',
@@ -118,6 +124,12 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./admin/manage-products/manage-products')
             .then(m => m.ManageProductsComponent)
+      },
+      {
+        path: 'orders',
+        loadComponent: () =>
+          import('./admin/manage-orders/manage-orders')
+            .then(m => m.ManageOrdersComponent)
       }
     ]
   },

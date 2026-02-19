@@ -11,11 +11,10 @@ export const adminGuard: CanActivateFn = () => {
   //     return false;
   //   } else {
   // };
-    const router = inject(Router);
+  const router = inject(Router);
+  if (typeof window === 'undefined') return false; // SSR: no localStorage
   const token = localStorage.getItem('adminToken');
-
   if (token) return true;
-
   router.navigate(['/admin/login']);
   return false;
 };

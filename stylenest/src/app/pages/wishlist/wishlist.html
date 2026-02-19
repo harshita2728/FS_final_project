@@ -1,0 +1,27 @@
+<div class="container py-4">
+  <h2 class="mb-4">My Wishlist</h2>
+
+  <div *ngIf="loading">Loading wishlist...</div>
+
+  <div *ngIf="!loading && (!wishlist?.items || wishlist.items.length === 0)" class="alert alert-secondary">
+    Your wishlist is empty. <a routerLink="/collection">Browse collection</a>
+  </div>
+
+  <div *ngIf="!loading && wishlist?.items?.length > 0" class="row g-3">
+    <div class="col-md-4" *ngFor="let product of wishlist.items">
+      <div class="card h-100 shadow-sm">
+        <img [src]="product.image" [alt]="product.name" class="card-img-top" style="height: 200px; object-fit: cover;">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="fw-bold text-primary">₹{{ product.price }}</p>
+          <div class="mt-auto d-flex gap-2">
+            <button class="btn btn-dark btn-sm flex-grow-1" (click)="addToCart(product._id)">Add to cart</button>
+            <button class="btn btn-outline-danger btn-sm" (click)="remove(product._id)" [disabled]="removingId === product._id">
+              {{ removingId === product._id ? '...' : 'Remove' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

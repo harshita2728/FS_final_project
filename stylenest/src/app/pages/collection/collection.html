@@ -15,9 +15,23 @@
             [alt]="product.name"
           />
 
-          <div class="card-body text-center">
+          <div class="card-body text-center d-flex flex-column">
             <h5 class="card-title">{{ product.name }}</h5>
             <p class="fw-bold text-primary price">₹{{ product.price }}</p>
+            <div class="mt-auto d-flex gap-1 flex-column">
+              <button
+                class="btn btn-dark btn-sm"
+                (click)="addToCart(product)"
+                [disabled]="addingId === product._id">
+                {{ addingId === product._id ? 'Adding...' : 'Add to cart' }}
+              </button>
+              <button
+                class="btn btn-outline-secondary btn-sm"
+                (click)="addToWishlist(product)"
+                [disabled]="addingWishlistId === product._id">
+                {{ addingWishlistId === product._id ? '...' : 'Add to wishlist' }}
+              </button>
+            </div>
           </div>
         </div>
       </div>

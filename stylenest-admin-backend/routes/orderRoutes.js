@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Order = require('../models/Order');
+const requireUser = require('../middleware/requireUser');
 
 router.post('/', requireUser, async (req, res) => {
   const order = new Order({

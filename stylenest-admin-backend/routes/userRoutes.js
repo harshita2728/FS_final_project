@@ -6,13 +6,13 @@ const User = require('../models/User');
 
 // REGISTER
 router.post('/register', async (req, res) => {
-  const { name, email, password } = req.body;
+  const { email, password } = req.body;
 
   const exist = await User.findOne({ email });
   if (exist) return res.status(400).json({ message: 'User already exists' });
 
   const hash = await bcrypt.hash(password, 10);
-  const user = new User({ name, email, password: hash });
+  const user = new User({  email, password: hash });
   await user.save();
 
   res.json({ message: 'Registered successfully' });
@@ -30,12 +30,12 @@ router.post('/login', async (req, res) => {
 
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
-  res.json({ token, user: { name: user.name, email: user.email } });
+  res.json({ token, user: { id: user._id, email: user.email } });
 });
 
-// PROFILE
-router.get('/profile', requireUser, async (req, res) => {
-  res.json(req.user);
-});
+// // PROFILE
+// router.get('/profile', requireUser, async (req, res) => {
+//   res.json(req.user);
+// });
 
 module.exports = router;

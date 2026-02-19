@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Wishlist = require('../models/Wishlist');
+const requireUser = require('../middleware/requireUser');
 
 router.post('/add', requireUser, async (req, res) => {
   const { productId } = req.body;

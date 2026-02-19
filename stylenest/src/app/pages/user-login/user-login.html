@@ -29,12 +29,24 @@
                 required
               />
             </div>
-            <div class="d-grid">
-              <button type="submit" class="btn btn-primary">Login</button>
-            </div>
+            <button class="btn btn-dark w-100" [disabled]="!email || !password">Login</button>
           </form>
+
+                    <!-- 🔔 MESSAGE -->
+            <div *ngIf="message" class="alert alert-warning text-center">
+              {{ message }}
+            </div>
+
+            <!-- REGISTER LINK -->
+            <p class="text-center mt-3">
+              Not registered?
+              <a routerLink="/user/user-register" class="fw-bold">
+                Register first
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+

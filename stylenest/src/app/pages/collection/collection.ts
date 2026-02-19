@@ -1,8 +1,12 @@
-import { Component, OnInit ,ChangeDetectorRef} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { ProductService } from '../../services/product';
+import { Cart } from '../../services/cart';
+import { Wishlist } from '../../services/wishlist';
+import { UserAuthService } from '../../services/user-auth';
 import { filter } from 'rxjs/operators';
+
 @Component({
   standalone: true,
   selector: 'app-collection',
@@ -12,34 +16,72 @@ import { filter } from 'rxjs/operators';
 })
 export class CollectionComponent implements OnInit {
 
- 
   products: any[] = [];
+  addingId: string | null = null;
+  addingWishlistId: string | null = null;
 
-  constructor(private productService: ProductService,
+  constructor(
+    private productService: ProductService,
+    private cart: Cart,
+    private wishlist: Wishlist,
+    public auth: UserAuthService,
     private router: Router,
     private cdr: ChangeDetectorRef
-    ) {}
-
+  ) {}
 
   ngOnInit(): void {
-this.loadProducts();
-    // 🔥 RELOAD PRODUCTS EVERY TIME ROUTE IS HIT
+    this.loadProducts();
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.loadProducts();
-      });
+      .subscribe(() => this.loadProducts());
   }
 
   loadProducts() {
     this.productService.getProducts().subscribe({
       next: (res) => {
         this.products = res;
-        this.cdr.markForCheck(); // Manually trigger change detection
-        console.log('Collection loaded:', res);
+        this.cdr.markForCheck();
+      },
+      error: (err) => console.error('Error loading products', err)
+    });
+  }
+
+  addToCart(product: any) {
+    if (!this.auth.isLoggedIn()) {
+      this.router.navigate(['/user/login']);
+      return;
+    }
+    this.addingId = product._id;
+    this.cart.addToCart(product._id, 1).subscribe({
+      next: () => {
+        this.addingId = null;
+        this.cdr.markForCheck();
+        alert('Added to cart!');
       },
       error: (err) => {
-        console.error('Error loading products', err);
+        this.addingId = null;
+        this.cdr.markForCheck();
+        alert(err.error?.message || 'Failed to add to cart');
+      }
+    });
+  }
+
+  addToWishlist(product: any) {
+    if (!this.auth.isLoggedIn()) {
+      this.router.navigate(['/user/login']);
+      return;
+    }
+    this.addingWishlistId = product._id;
+    this.wishlist.addToWishlist(product._id).subscribe({
+      next: () => {
+        this.addingWishlistId = null;
+        this.cdr.markForCheck();
+        alert('Added to wishlist!');
+      },
+      error: (err) => {
+        this.addingWishlistId = null;
+        this.cdr.markForCheck();
+        alert(err.error?.message || 'Failed to add to wishlist');
       }
     });
   }

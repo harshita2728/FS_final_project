@@ -13,7 +13,10 @@ app.use(express.json());
 
 app.use('/api/products', productRoutes);
 app.use('/api/admin', adminRoutes);
-
+app.use('/api/user', require('./routes/userRoutes'));
+app.use('/api/orders', require('./routes/orderRoutes'));
+app.use('/api/cart', require('./routes/cartRoutes'));
+app.use('/api/wishlist', require('./routes/wishlistRoutes'));
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
