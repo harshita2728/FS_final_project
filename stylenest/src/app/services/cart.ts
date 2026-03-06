@@ -29,4 +29,8 @@ export class Cart {
   removeFromCart(productId: string): Observable<any> {
     return this.http.delete(`${this.api}/remove/${productId}`, { headers: this.getHeaders() });
   }
+
+  updateQuantity(productId: string, qty: number): Observable<any> {
+    return this.http.put(`${this.api}/update/${productId}`, { qty }, { headers: this.getHeaders() });
+  }
 }

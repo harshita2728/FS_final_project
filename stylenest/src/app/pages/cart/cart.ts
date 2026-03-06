@@ -17,6 +17,7 @@ export class CartPageComponent implements OnInit {
   loading = true;
   removingId: string | null = null;
   placing = false;
+  updatingId: string | null = null;
 
   constructor(
     private cartService: CartService,
@@ -56,6 +57,43 @@ export class CartPageComponent implements OnInit {
         this.loadCart();
       },
       error: () => { this.removingId = null; this.cdr.detectChanges(); }
+    });
+  }
+
+  increaseQty(item: any) {
+    const productId = item.productId?._id;
+    if (!productId) return;
+    
+    this.updatingId = productId;
+    const newQty = (item.qty ?? 1) + 1;
+    this.cartService.updateQuantity(productId, newQty).subscribe({
+      next: (res) => {
+        this.cart = res;
+        this.updatingId = null;
+        this.cdr.detectChanges();
+      },
+      error: () => { this.updatingId = null; this.cdr.detectChanges(); }
+    });
+  }
+
+  decreaseQty(item: any) {
+    const productId = item.productId?._id;
+    if (!productId) return;
+    
+    if (item.qty <= 1) {
+      this.remove(productId);
+      return;
+    }
+    
+    this.updatingId = productId;
+    const newQty = (item.qty ?? 1) - 1;
+    this.cartService.updateQuantity(productId, newQty).subscribe({
+      next: (res) => {
+        this.cart = res;
+        this.updatingId = null;
+        this.cdr.detectChanges();
+      },
+      error: () => { this.updatingId = null; this.cdr.detectChanges(); }
     });
   }
 

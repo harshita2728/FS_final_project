@@ -30,4 +30,24 @@ router.delete('/remove/:id', requireUser, async (req, res) => {
   res.json({ message: 'Removed' });
 });
 
+router.put('/update/:id', requireUser, async (req, res) => {
+  const { qty } = req.body;
+  if (qty < 1) {
+    // If quantity is less than 1, remove the item
+    await Cart.updateOne(
+      { userId: req.user._id },
+      { $pull: { items: { productId: req.params.id } } }
+    );
+    return res.json({ message: 'Removed' });
+  }
+  
+  await Cart.updateOne(
+    { userId: req.user._id, 'items.productId': req.params.id },
+    { $set: { 'items.$.qty': qty } }
+  );
+  
+  const cart = await Cart.findOne({ userId: req.user._id }).populate('items.productId');
+  res.json(cart);
+});
+
 module.exports = router;
