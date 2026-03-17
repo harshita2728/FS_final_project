@@ -14,11 +14,13 @@ export class AddProductComponent implements OnInit {
 
   isEdit : boolean = false;
   productId: string = "";
+  selectedFile!: File;
 
 product = {
     name: '',
     price: '',
-    image: ''
+    category: 'women',
+      image: ''
   };
   constructor(
     private route: ActivatedRoute,
@@ -26,6 +28,10 @@ product = {
     private router: Router,
     private cdr: ChangeDetectorRef,
   ) {}
+
+  onFileSelect(event: any): void {
+    this.selectedFile = event.target.files[0];
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -48,6 +54,7 @@ product = {
         console.log('Product loaded for edit:', res);
         this.product.name = res.name;   // 🔥 THIS AUTOFILLS FORM
         this.product.price = res.price;
+        this.product.category = res.category || 'women';
         this.product.image = res.image;
         this.cdr.detectChanges(); // 🔄 UPDATE VIEW WITH LOADED DATA
 
@@ -56,33 +63,50 @@ product = {
     });
   }
 
-  submit(form:any): void {
-    if (this.isEdit) {
-      // UPDATE
-      this.productService.updateProduct(this.productId, this.product)
-        .subscribe(() => {
-          alert('Product updated successfully');
-          // this.router.navigate(['admin/manage-products']);
-            setTimeout(() => {
-      this.router.navigate(['/admin/dashboard/manage-products']);
-    }, 0);
+submit(form: any): void {
 
-        });
-    } else {
-      // ADD
-      this.productService.addProduct(this.product)
-        .subscribe(() => {
-          if(!this.isEdit) {
-          this.product = {
-              name: '',
-              price: '',
-              image: ''
-            };}
-          alert('Product added successfully');
-            // reset only in ADD mode
-            form.resetForm();
-          this.router.navigate(['admin/manage-products']);
-        });
+  const formData = new FormData();
+  formData.append('name', this.product.name);
+  formData.append('price', this.product.price);
+  formData.append('category', this.product.category);
+
+  if (this.selectedFile) {
+    formData.append('image', this.selectedFile);
+  }
+
+  if (this.isEdit) {
+
+    this.productService.updateProduct(this.productId, formData)
+      .subscribe(() => {
+        alert('Product updated successfully');
+        this.router.navigate(['/admin/dashboard/manage-products']);
+      });
+
+  } else {
+
+    this.productService.addProduct(formData)
+      .subscribe(() => {
+
+        alert('Product added successfully');
+
+        form.resetForm();
+
+        this.router.navigate(['/admin/dashboard/manage-products']);
+      });
     }
   }
-}
+}    // } else {
+    //   // ADD
+    //   this.productService.addProduct(this.product)
+    //     .subscribe(() => {
+    //       if(!this.isEdit) {
+    //       this.product = {
+    //           name: '',
+    //           price: ''
+    //         };}
+    //       alert('Product added successfully');
+    //         // reset only in ADD mode
+    //         form.resetForm();
+    //       this.router.navigate(['admin/manage-products']);
+    //     });
+

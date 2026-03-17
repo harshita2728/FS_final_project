@@ -7,7 +7,8 @@ import { AdminAuthService } from '../../services/admin-auth';
   selector: 'app-admin-navbar',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './admin-navbar.html'
+  templateUrl: './admin-navbar.html',
+  styleUrls: ['./admin-navbar.css']
 })
 export class AdminNavbar {
 
@@ -19,6 +20,6 @@ export class AdminNavbar {
   logout() {
     this.auth.logout();
     // this.router.navigate(['/pages/home']);
-    location.href='';
+    location.href='/';
   }
 }

@@ -19,8 +19,8 @@ export class ProductService {
     return this.http.get<any>(`${this.api}/${id}`);
   }
   // ADD product (admin)
-  addProduct(product: any): Observable<any> {
-    return this.http.post(this.api, product);
+  addProduct(data: FormData): Observable<any> {
+    return this.http.post(this.api, data);
   }
 
   // DELETE product
@@ -29,7 +29,7 @@ export class ProductService {
   }
 
   // UPDATE product
-  updateProduct(id: string, product: any): Observable<any> {
-    return this.http.put(`${this.api}/${id}`, product);
+  updateProduct(id: string, data: FormData): Observable<any> {
+    return this.http.put(`${this.api}/${id}`, data);
   }
 }

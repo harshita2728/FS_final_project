@@ -9,7 +9,7 @@ import { BrowserModule } from '@angular/platform-browser';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,  Footer,FormsModule],
+  imports: [RouterOutlet,FormsModule],
   templateUrl: './app.html',
 })
 export class AppComponent {}

@@ -1,18 +1,55 @@
-.card {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.page-shell {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  padding: 40px 16px;
 }
 
-.card-header {
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #dee2e6;
+.page-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  max-width: 420px;
+  width: 100%;
+  padding: 32px 30px 26px;
 }
 
-.btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
+.page-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #004085;
+.form-label {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.form-control {
+  border-radius: 10px;
+  border-color: var(--color-border);
+  font-size: 14px;
+  padding-block: 10px;
+}
+
+.form-control:focus {
+  border-color: var(--color-primary);
+  box-shadow: none;
+}
+
+.btn-dark {
+  width: 100%;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding-block: 9px;
 }

@@ -1,1 +1,30 @@
-/* My Wishlist page */
+.container {
+  padding-top: 32px;
+  padding-bottom: 48px;
+}
+
+h2 {
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.card {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+.card-title {
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.btn-dark,
+.btn-outline-danger {
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}

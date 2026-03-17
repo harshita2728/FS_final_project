@@ -4,7 +4,14 @@
 
   <input class="form-control mb-2" placeholder="Name" [(ngModel)]="product.name" name="name" required>
   <input class="form-control mb-2" type="text" placeholder="Price" [(ngModel)]="product.price" name="price" required>
-  <input class="form-control mb-2" type="text" placeholder="Image URL" [(ngModel)]="product.image" name="image" required>
+  <select class="form-control mb-2" [(ngModel)]="product.category" name="category" required>
+    <option value="" disabled>Select category</option>
+    <option value="women">Women</option>
+    <option value="men">Men</option>
+    <option value="kids">Kids</option>
+    <option value="all">All (show in all)</option>
+  </select>
+  <input class="form-control mb-2" type="file" placeholder="Image" (change)="onFileSelect($event)" name="image" required>
 <!-- 
   <button class="btn btn-dark w-100" type="submit">Add Product</button>
   <button class="btn btn-danger" (click)="logout()">Logout</button> -->

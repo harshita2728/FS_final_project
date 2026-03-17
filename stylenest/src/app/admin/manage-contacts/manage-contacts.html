@@ -1,0 +1,24 @@
+<div class="container mt-4">
+  <h2>Contact Messages</h2>
+
+  <div *ngIf="loading">Loading messages...</div>
+
+  <div *ngIf="!loading && contacts.length === 0" class="text-muted">
+    No contact messages yet.
+  </div>
+
+  <div *ngIf="!loading && contacts.length > 0">
+    <div class="card mb-3" *ngFor="let contact of contacts">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <span><strong>Message</strong> {{ contact._id | slice:0:8 }}...</span>
+        <span class="text-muted">{{ contactDate(contact) }}</span>
+      </div>
+      <div class="card-body">
+        <p class="mb-1"><strong>Name:</strong> {{ contact.fullName || '-' }}</p>
+        <p class="mb-1"><strong>Email:</strong> {{ contact.email || '-' }}</p>
+        <p class="mb-1"><strong>Phone:</strong> {{ contact.phone || '-' }}</p>
+        <p class="mb-0"><strong>Message:</strong> {{ contact.message || '-' }}</p>
+      </div>
+    </div>
+  </div>
+</div>

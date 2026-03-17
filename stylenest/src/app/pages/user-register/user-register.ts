@@ -7,13 +7,17 @@ import { UserAuthService } from '../../services/user-auth';
 @Component({
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './user-register.html'
+  templateUrl: './user-register.html',
+  styleUrls: ['./user-register.css']
 })
 export class UserRegisterComponent {
 
   form = {
+    fullName: '',
     email: '',
-    password: ''
+    phone: '',
+    password: '',
+    confirmPassword: ''
   };
 
   constructor(
@@ -22,7 +26,19 @@ export class UserRegisterComponent {
   ) {}
 
   register() {
-    this.auth.register(this.form).subscribe({
+    if (this.form.password !== this.form.confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+
+    const payload = {
+      fullName: this.form.fullName,
+      email: this.form.email,
+      phone: this.form.phone,
+      password: this.form.password
+    };
+
+    this.auth.register(payload).subscribe({
       next: () => {
         alert('Registered successfully! You can now log in.');
         this.router.navigate(['/user/login']);

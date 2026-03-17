@@ -5,6 +5,7 @@ require('dotenv').config();
 
 const productRoutes = require('./routes/productRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const contactRoutes = require('./routes/contactRoutes');
 
 const app = express();
 
@@ -17,7 +18,8 @@ app.use('/api/user', require('./routes/userRoutes'));
 app.use('/api/orders', require('./routes/orderRoutes'));
 app.use('/api/cart', require('./routes/cartRoutes'));
 app.use('/api/wishlist', require('./routes/wishlistRoutes'));
-
+app.use('/api/contact', contactRoutes);
+app.use('/uploads', express.static('uploads'));
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));

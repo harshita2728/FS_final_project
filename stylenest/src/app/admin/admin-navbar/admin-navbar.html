@@ -1,7 +1,7 @@
 <nav class="navbar navbar-dark bg-dark px-4">
   <span class="navbar-brand">Admin Panel</span>
 
-  <div>
+  <div class="sidebar">
     <a routerLink="/admin/dashboard/manage-products" class="btn btn-outline-light me-2">
       Manage Products
     </a>
@@ -10,6 +10,9 @@
     </a>
     <a routerLink="/admin/dashboard/orders" class="btn btn-outline-light me-2">
       Orders
+    </a>
+    <a routerLink="/admin/dashboard/contacts" class="btn btn-outline-light me-2">
+      Contacts
     </a>
     <button class="btn btn-danger" (click)="logout()">Logout</button>
   </div>

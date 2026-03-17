@@ -23,5 +23,6 @@ export class AdminAuthService {
   logout() {
     if (typeof window === 'undefined') return;
     localStorage.removeItem('adminToken');
+    // this.router.navigate(['/pages/home']);
   }
 }

@@ -1,10 +1,15 @@
-<div class="container mt-5" style="max-width:400px">
-  <h3 class="text-center mb-3">Register</h3>
+<div class="page-shell">
+  <div class="page-card">
+    <h3 class="page-title">Register</h3>
 
-  <form (ngSubmit)="register()">
-    <input class="form-control mb-2" placeholder="Email" [(ngModel)]="form.email" name="email" required>
-    <input class="form-control mb-3" placeholder="Password" type="password" [(ngModel)]="form.password" name="password" required>
+    <form (ngSubmit)="register()">
+      <input class="form-control mb-3" placeholder="Full Name" [(ngModel)]="form.fullName" name="fullName" required>
+      <input class="form-control mb-3" placeholder="Email" [(ngModel)]="form.email" name="email" required>
+      <input class="form-control mb-3" placeholder="Phone (optional)" [(ngModel)]="form.phone" name="phone">
+      <input class="form-control mb-3" placeholder="Password" type="password" [(ngModel)]="form.password" name="password" required>
+      <input class="form-control mb-3" placeholder="Confirm Password" type="password" [(ngModel)]="form.confirmPassword" name="confirmPassword" required>
 
-    <button class="btn btn-dark w-100">Register</button>
-  </form>
+      <button class="btn btn-dark">Create Account</button>
+    </form>
+  </div>
 </div>

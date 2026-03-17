@@ -1,12 +1,20 @@
-<div  class="contact">
+<div class="contact">
+  <div class="contact-inner">
+    <p class="section-kicker">Support</p>
+    <h2>Contact Us</h2>
+    <p class="contact-subtitle">
+      Have a question or need help with an order? We are here to help.
+    </p>
 
-  <h2>Contact Us</h2>
-
-  <form class="contact-form">
-    <input type="text" placeholder="Your Name" />
-    <input type="email" placeholder="Your Email" />
-    <textarea placeholder="Your Message"></textarea>
-    <button class="btn-secondary">Send Message</button>
-  </form>
-
+    <form class="contact-form" (ngSubmit)="submit()">
+      <input type="text" placeholder="Your Name" [(ngModel)]="form.fullName" name="fullName" required />
+      <input type="email" placeholder="Your Email" [(ngModel)]="form.email" name="email" required />
+      <input type="text" placeholder="Phone (optional)" [(ngModel)]="form.phone" name="phone" />
+      <textarea placeholder="Your Message" [(ngModel)]="form.message" name="message" required></textarea>
+      <button class="btn-secondary" type="submit" [disabled]="sending">
+        {{ sending ? 'Sending...' : 'Send Message' }}
+      </button>
+      <p *ngIf="message" class="mt-3">{{ message }}</p>
+    </form>
+  </div>
 </div>

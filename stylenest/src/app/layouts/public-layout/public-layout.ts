@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../components/navbar/navbar';
+import { Footer } from '../../components/footer/footer';
 
 
 @Component({
@@ -10,11 +11,13 @@ import { NavbarComponent } from '../../components/navbar/navbar';
   imports: [
     CommonModule,
     RouterOutlet,
-    NavbarComponent
+    NavbarComponent,
+    Footer
   ],
   template: `
     <app-navbar></app-navbar>
     <router-outlet></router-outlet>
+    <app-footer></app-footer>
   `
 })
 export class PublicLayout {}

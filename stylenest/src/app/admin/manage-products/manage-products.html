@@ -11,6 +11,7 @@
     <thead>
       <tr>
         <th>Name</th>
+        <th>Category</th>
         <th>Price</th>
         <th>Image</th>
         <th>Action</th>
@@ -20,6 +21,7 @@
     <tbody>
       <tr *ngFor="let p of products">
         <td>{{ p.name }}</td>
+        <td class="text-capitalize">{{ p.category || '-' }}</td>
         <td>₹{{ p.price }}</td>
         <td>
           <img [src]="p.image" width="80" />
@@ -27,7 +29,7 @@
         
         
         <td>
-          <button class="btn btn-danger btn-sm" (click)="deleteProduct(p._id)"> Delete </button>
+          <button class="btn btn-danger btn-sm m-2" (click)="deleteProduct(p._id)"> Delete </button>
           <button class="btn btn-primary btn-sm me-2"  (click)="editProduct(p._id)">  Edit </button>
               </td>
       </tr>

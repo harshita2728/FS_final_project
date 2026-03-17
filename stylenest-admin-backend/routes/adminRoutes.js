@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const Admin = require('../models/Admin');
 const Order = require('../models/Order');
+const Contact = require('../models/Contact');
 
 // GET all orders (admin view of user orders)
 router.get('/orders', async (req, res) => {
@@ -18,6 +19,17 @@ router.get('/orders', async (req, res) => {
   }
 });
 
+// GET all contact messages
+router.get('/contacts', async (req, res) => {
+  try {
+    const contacts = await Contact.find().sort({ createdAt: -1 });
+    res.json(contacts);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Failed to fetch contacts' });
+  }
+});
+
 router.post('/login', async (req, res) => {
   try {
     console.log(req.body);
@@ -25,7 +37,7 @@ router.post('/login', async (req, res) => {
     
     // 1️⃣ Check admin exists
     const emailLower = email.trim().toLowerCase();
-const admin = await Admin.findOne({ email: emailLower });
+    const admin = await Admin.findOne({ email: emailLower });
     if (!admin) {
       return res.status(401).json({ message: 'Invalid admin credentials' });
     }

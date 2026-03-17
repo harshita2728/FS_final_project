@@ -1,30 +1,27 @@
-/* ===============================
-   FOOTER STYLES – StyleNest
-================================ */
-
 .footer {
-  background-color: #0f172a; /* dark navy */
-  color: #e5e7eb;
-   margin-top: 0;
-   
-  padding-top: 40px;
+  background-color: var(--color-primary);
+  color: #e2e8f0;
+  padding-top: 56px;
   margin-top: 80px;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-sans);
 }
 
 .footer-container {
-  max-width: 1200px;
+  max-width: 1120px;
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
+  padding-inline: 20px;
 }
 
 .footer-section h3,
 .footer-section h4 {
   color: #ffffff;
-  margin-bottom: 15px;
-  font-size: 20px;
+  margin-bottom: 14px;
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .footer-section p {
@@ -36,6 +33,7 @@
 .footer-section ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .footer-section ul li {
@@ -45,47 +43,36 @@
 .footer-section ul li a {
   text-decoration: none;
   color: #cbd5f5;
-  font-size: 14px;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   transition: color 0.3s ease;
 }
 
 .footer-section ul li a:hover {
-  color: #38bdf8; /* blue hover */
+  color: var(--color-accent);
 }
 
-/* Footer bottom bar */
 .footer-bottom {
-  margin-top: 50px;
-  padding: 20px 0;
-  border-top: 1px solid #1e293b;
+  margin-top: 40px;
+  padding: 18px 0 28px;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
   text-align: center;
 }
 
 .footer-bottom p {
-  font-size: 13px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: #94a3b8;
 }
 
-/* ===============================
-   RESPONSIVE
-================================ */
 @media (max-width: 768px) {
   .footer {
     text-align: center;
   }
 
   .footer-container {
-    gap: 30px;
-  }
-}
-@media (max-width: 480px) {
-  .footer-section h3,
-  .footer-section h4 {
-    font-size: 18px;
-  }
-
-  .footer-section p,
-  .footer-section ul li a {
-    font-size: 13px;
+    gap: 24px;
   }
 }

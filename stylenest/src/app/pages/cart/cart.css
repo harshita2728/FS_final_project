@@ -1,0 +1,36 @@
+.container {
+  padding-top: 32px;
+  padding-bottom: 48px;
+}
+
+h2 {
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.card {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+.card-body {
+  gap: 12px;
+}
+
+.btn-outline-danger,
+.btn-outline-secondary {
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+}
+
+.btn-dark {
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding-inline: 22px;
+}
