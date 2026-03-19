@@ -3,6 +3,27 @@ const router = express.Router();
 const Cart = require('../models/Cart');
 const requireUser = require('../middleware/requireUser');
 
+const toPublicImageUrl = (req, imagePath) => {
+  if (!imagePath) return '';
+  const normalized = imagePath.replace(/\\/g, '/');
+  const withLeadingSlash = normalized.startsWith('/') ? normalized : `/${normalized}`;
+  return `${req.protocol}://${req.get('host')}${withLeadingSlash}`;
+};
+
+const normalizeCart = (cart, req) => {
+  if (!cart) return { items: [] };
+  const obj = typeof cart.toObject === 'function' ? cart.toObject() : cart;
+  if (Array.isArray(obj.items)) {
+    obj.items = obj.items.map((item) => {
+      if (item?.productId?.image) {
+        item.productId.image = toPublicImageUrl(req, item.productId.image);
+      }
+      return item;
+    });
+  }
+  return obj;
+};
+
 router.post('/add', requireUser, async (req, res) => {
   const { productId, qty } = req.body;
 
@@ -14,12 +35,13 @@ router.post('/add', requireUser, async (req, res) => {
   else cart.items.push({ productId, qty });
 
   await cart.save();
-  res.json(cart);
+  await cart.populate('items.productId');
+  res.json(normalizeCart(cart, req));
 });
 
 router.get('/', requireUser, async (req, res) => {
   const cart = await Cart.findOne({ userId: req.user._id }).populate('items.productId');
-  res.json(cart);
+  res.json(normalizeCart(cart, req));
 });
 
 router.delete('/remove/:id', requireUser, async (req, res) => {
@@ -47,7 +69,7 @@ router.put('/update/:id', requireUser, async (req, res) => {
   );
   
   const cart = await Cart.findOne({ userId: req.user._id }).populate('items.productId');
-  res.json(cart);
+  res.json(normalizeCart(cart, req));
 });
 
 module.exports = router;
